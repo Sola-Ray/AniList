@@ -9,11 +9,17 @@ import {Manga} from '../model/Manga';
 })
 export class HomePage implements OnInit {
   mangas!: Manga[];
+  currentTab: string = 'anime';
 
   constructor(private graphQlService: GraphqlService) {}
 
   ngOnInit(): void {
     this.mangas = this.graphQlService.getMangas(1,20);
     console.log(this.mangas);
+  }
+
+  public onTabChanged(tabChanged: any) {
+    this.currentTab = tabChanged.tab;
+
   }
 }

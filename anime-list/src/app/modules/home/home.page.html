@@ -1,0 +1,29 @@
+<ion-toolbar>
+  <ion-title>
+    Animes
+  </ion-title>
+</ion-toolbar>
+<ion-content [fullscreen]="true">
+  <ion-img src="assets/ressources/Pokemon.png" alt="Pokemon"></ion-img>
+</ion-content>
+
+<ion-tabs (ionTabsDidChange)="onTabChanged($event)">
+
+  <ion-tab-bar slot="bottom" [attr.tab]="currentTab">
+
+    <ion-tab-button tab="anime">
+      <ion-icon name="videocam-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="manga">
+      <ion-icon name="book-outline"></ion-icon>
+    </ion-tab-button>
+
+
+    <ion-tab-button tab="profile">
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+
+</ion-tabs>
