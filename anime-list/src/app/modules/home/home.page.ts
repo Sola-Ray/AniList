@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {GraphqlService} from '../service/graphql.service';
-import {Manga} from '../model/Manga';
+import {GraphqlService} from '../../service/graphql.service';
+import {Manga} from '../../model/Manga';
 
 @Component({
   selector: 'app-home',
