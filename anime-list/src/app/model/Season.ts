@@ -1,8 +1,7 @@
 /* eslint-disable */
-enum Status {
-  FINISHED,
-  RELEASING,
-  NOT_YET_RELEASED,
-  CANCELLED,
-  HIATUS
+enum Season {
+  SPRING,
+  SUMMER,
+  FALL,
+  WINTER
 }

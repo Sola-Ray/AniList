@@ -1,8 +1,13 @@
 /* eslint-disable */
-enum Status {
-  FINISHED,
-  RELEASING,
-  NOT_YET_RELEASED,
-  CANCELLED,
-  HIATUS
+enum Format {
+  MOVIE,
+  ONA,
+  OVA,
+  TV,
+  TV_SHORT,
+  SPECIAL,
+  MUSIC,
+  MANGA,
+  NOVEL,
+  ONE_SHOT
 }

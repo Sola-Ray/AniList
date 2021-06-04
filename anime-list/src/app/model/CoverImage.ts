@@ -1,11 +1,11 @@
-class Title {
-  romaji: string;
-  english: string;
-  nativ: string;
+class CoverImage {
+  extraLarge: string;
+  large: string;
+  medium: string;
 
-  constructor(romaji: string, english: string, nativ: string) {
-    this.romaji = romaji;
-    this.english = english;
-    this.nativ = nativ;
+  constructor(extraLarge: string, large: string, medium: string) {
+    this.extraLarge = extraLarge;
+    this.large = large;
+    this.medium = medium;
   }
 }

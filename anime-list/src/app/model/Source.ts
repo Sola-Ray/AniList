@@ -1,7 +1,12 @@
 /* eslint-disable */
-enum Season {
-  SPRING,
-  SUMMER,
-  FALL,
-  WINTER
+enum Source {
+  ORIGINAL,
+  MANGA,
+  LIGHT_NOVEL,
+  VISUAL_NOVEL,
+  VIDEO_GAME,
+  OTHER,
+  NOVEL,
+  DOUJINSHI,
+  ANIME
 }
