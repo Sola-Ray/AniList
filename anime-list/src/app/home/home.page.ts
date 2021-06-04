@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {GraphqlService} from '../service/graphql.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private graphQlService: GraphqlService) {}
 
+  loadDatas(): void {
+    this.graphQlService.getMedias(1,20).subscribe((result: any) => {
+      console.log(result);
+    });
+  }
 }
