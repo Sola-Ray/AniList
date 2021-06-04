@@ -1,4 +1,12 @@
-class Manga extends Media {
+import {Media} from './Media';
+import {Title} from './Title';
+import {CoverImage} from './CoverImage';
+import {Status} from './Status';
+import {Source} from './Source';
+import {Season} from './Season';
+import {Format} from './Format';
+
+export class Manga extends Media {
   chapters: number;
   volumes: number;
 

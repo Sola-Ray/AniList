@@ -1,4 +1,4 @@
-class Title {
+export class Title {
   romaji: string;
   english: string;
   native: string;

@@ -1,5 +1,5 @@
 /* eslint-disable */
-enum Season {
+export enum Season {
   SPRING,
   SUMMER,
   FALL,

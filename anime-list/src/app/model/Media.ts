@@ -1,4 +1,11 @@
-class Media {
+import {Title} from './Title';
+import {CoverImage} from './CoverImage';
+import {Status} from './Status';
+import {Season} from './Season';
+import {Source} from './Source';
+import {Format} from './Format';
+
+export class Media {
   id: number;
   description: string;
   seasonYear: number;

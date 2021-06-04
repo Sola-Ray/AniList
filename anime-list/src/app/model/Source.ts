@@ -1,5 +1,5 @@
 /* eslint-disable */
-enum Source {
+export enum Source {
   ORIGINAL,
   MANGA,
   LIGHT_NOVEL,

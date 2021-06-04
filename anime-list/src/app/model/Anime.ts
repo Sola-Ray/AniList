@@ -1,4 +1,12 @@
-class Anime extends Media {
+import {Media} from './Media';
+import {Season} from './Season';
+import {Format} from './Format';
+import {Source} from './Source';
+import {Title} from './Title';
+import {CoverImage} from './CoverImage';
+import {Status} from './Status';
+
+export class Anime extends Media {
   episodes: number;
   duration: number;
 

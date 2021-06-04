@@ -1,5 +1,5 @@
 /* eslint-disable */
-enum Format {
+export enum Format {
   MOVIE,
   ONA,
   OVA,

@@ -1,5 +1,5 @@
 /* eslint-disable */
-enum Status {
+export enum Status {
   FINISHED,
   RELEASING,
   NOT_YET_RELEASED,
