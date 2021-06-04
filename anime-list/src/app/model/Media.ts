@@ -1,31 +1,29 @@
 import {Title} from './Title';
 import {CoverImage} from './CoverImage';
 import {Status} from './Status';
-import {Season} from './Season';
 import {Source} from './Source';
 import {Format} from './Format';
 
 export class Media {
   id: number;
   description: string;
-  seasonYear: number;
   bannerImage: string;
   genres: string[] = [];
   averageScore: number;
+  meanScore: number;
+  favourites: number
   isAdult: boolean;
   title: Title;
   coverImage: CoverImage;
   status: Status;
   format: Format;
-  season: Season;
   source: Source;
 
-  constructor(id: number, description: string, seasonYear: number, bannerImage: string, genres: string[],
+  constructor(id: number, description: string, bannerImage: string, genres: string[],
               averageScore: number, isAdult: boolean, title: Title, coverImage: CoverImage, status: Status,
-              format: Format, season: Season, source: Source) {
+              format: Format, source: Source, meanScore: number, favourites: number) {
     this.id = id;
     this.description = description;
-    this.seasonYear = seasonYear;
     this.bannerImage = bannerImage;
     this.genres = genres;
     this.averageScore = averageScore;
@@ -34,7 +32,8 @@ export class Media {
     this.coverImage = coverImage;
     this.status = status;
     this.format = format;
-    this.season = season;
     this.source = source;
+    this.meanScore = meanScore;
+    this.favourites = favourites;
   }
 }
