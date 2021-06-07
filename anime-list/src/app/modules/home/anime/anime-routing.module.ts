@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: AnimePage
+  },
+  {
+    path: ':id',
+    loadChildren: () => import('./anime-detail/anime-detail.module').then( m => m.AnimeDetailPageModule)
   }
+
 ];
 
 @NgModule({
