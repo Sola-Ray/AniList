@@ -37,10 +37,10 @@
             <ion-label class="label">{{manga.chapters}} chapitres </ion-label>
             <ion-label class="label">{{manga.volumes}} volumes </ion-label>
           </ng-container>
-          <ng-container *ngIf="!manga.chapters && !manga.volumes">
-            <ion-label class="label">? chapitres </ion-label>
+          <ion-content *ngIf="!manga.chapters && !manga.volumes">
+            <ion-label class="label">? chapters </ion-label>
             <ion-label class="label">? volumes </ion-label>
-          </ng-container>
+          </ion-content>
           <div>
             <ion-label class="label">Status : {{manga.status}}</ion-label>
           </div>

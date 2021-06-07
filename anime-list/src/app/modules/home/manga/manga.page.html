@@ -1,32 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Mangas</ion-title>
-    <ion-menu side="start" menuId="custom" className="my-custom-menu">
-      <ion-header>
-        <ion-toolbar color="tertiary">
-          <ion-title>Custom Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <ion-list>
-          <ion-item>Menu Item</ion-item>
-          <ion-item>Menu Item</ion-item>
-          <ion-item>Menu Item</ion-item>
-          <ion-item>Menu Item</ion-item>
-          <ion-item>Menu Item</ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">App</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <ng-container *ngIf="mangas">
     <ion-list>
     <ion-item *ngFor="let manga of mangas">
@@ -38,14 +16,16 @@
           <ion-card-content>
             <img class="img" src="{{manga.coverImage.medium}}" align="left">
             <ion-label class="label">{{manga.startDate.year}}</ion-label>
-            <ng-container *ngIf="manga.chapters && manga.volumes">
+            <ion-content *ngIf="manga.chapters && manga.volumes">
             <ion-label class="label">{{manga.chapters}} chapitres</ion-label>
             <ion-label class="label">{{manga.volumes}} volumes</ion-label>
-            </ng-container>
-            <ng-container *ngIf="!manga.chapters && !manga.volumes">
-              <ion-label class="label">? chapitres</ion-label>
+            </ion-content>
+            <ion-content *ngIf="!manga.chapters && !manga.volumes">
+              <ion-label class="label">? chapters</ion-label>
               <ion-label class="label">? volumes</ion-label>
-            </ng-container>
+            </ion-content>
+            <ion-label class="label"> Average score : {{manga.averageScore}} / 100</ion-label>
+            <ion-label class="label"> Status : {{manga.status}}</ion-label>
           </ion-card-content>
         </ion-card>
       </div>

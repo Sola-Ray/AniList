@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { MangaDetailPageRoutingModule } from './manga-detail-routing.module';
 
 import { MangaDetailPage } from './manga-detail.page';
-import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
