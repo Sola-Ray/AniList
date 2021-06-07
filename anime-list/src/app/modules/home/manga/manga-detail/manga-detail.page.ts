@@ -10,7 +10,7 @@ import {Location} from '@angular/common';
   styleUrls: ['./manga-detail.page.scss'],
 })
 export class MangaDetailPage implements OnInit {
-  mangaId!: number
+  mangaId!: number;
   manga!: Manga;
   constructor(private activeRoute: ActivatedRoute,
               private mangaService: MangaService,

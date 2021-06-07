@@ -1,3 +1,14 @@
+.title {
+  .element {
+    display: inline-block;
+    horiz-align: center;
+    font-size: 25px;
+  }
+  .return-btn {
+
+  }
+}
+
 .content {
   text-align: center;
 }
@@ -17,6 +28,7 @@
     bottom: 60px;
   }
 }
+
 .synopsis {
   .label {
     font-size: 17px;
