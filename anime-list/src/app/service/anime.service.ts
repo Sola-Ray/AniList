@@ -6,8 +6,8 @@ import {Observable} from 'rxjs';
 
 const queries = {
   // eslint-disable-next-line max-len
-  query : (page: number, perPage: number) => `query{Page(page:${page},perPage: ${perPage}){media(type: ANIME){id type title { romaji english native } description season seasonYear status format source coverImage { extraLarge large medium } bannerImage synonyms genres averageScore isAdult chapters volumes episodes duration}}}`,
-  queryDetail : (id: number) => `query{  Page(page:1,perPage:1){media(type: ANIME, id: ${id} ) { id type title {romaji english native } description season seasonYear status format source coverImage { extraLarge large medium} bannerImage synonyms genres averageScore isAdult chapters volumes meanScore favourites}}}`,
+  query : (page: number, perPage: number) => `query{Page(page:${page},perPage: ${perPage}){media(type: ANIME){id type title { romaji english native } description season seasonYear status format source coverImage { extraLarge large medium } bannerImage synonyms genres averageScore isAdult episodes duration}}}`,
+  queryDetail : (id: number) => `query{  Page(page:1,perPage:1){media(type: ANIME, id: ${id} ) { id type title {romaji english native } description season seasonYear status format source coverImage { extraLarge large medium} bannerImage synonyms genres averageScore isAdult meanScore favourites}}}`,
 };
 
 @Injectable({
