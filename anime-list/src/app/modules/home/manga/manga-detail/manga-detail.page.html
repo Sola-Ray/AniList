@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <div>
+      <ion-title *ngIf="manga">{{manga.title.romaji}}</ion-title>
+      <ion-icon (click)="return()" name="chevron-back-outline"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="manga" class="content">
+  <div class="pictures">
+    <img  src="{{manga.bannerImage}}">
+    <img class="cover" src="{{manga.coverImage.medium}}">
+    <ion-label class="title">{{manga.title.romaji}}</ion-label>
+  </div>
+
+  <ion-card class="synopsis">
+    <ion-card-header>
+      <ion-card-title>Synopsis</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label class="label" [innerHTML]="manga.description"></ion-label>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="info-card">
+    <ion-card-header>
+      <ion-card-title>Infos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="infos">
+
+
+        <div class="white"></div>
+        <div>
+          <ng-container *ngIf="manga.chapters && manga.volumes">
+            <ion-label class="label">{{manga.chapters}} chapitres </ion-label>
+            <ion-label class="label">{{manga.volumes}} volumes </ion-label>
+          </ng-container>
+          <ng-container *ngIf="!manga.chapters && !manga.volumes">
+            <ion-label class="label">? chapitres </ion-label>
+            <ion-label class="label">? volumes </ion-label>
+          </ng-container>
+          <div>
+            <ion-label class="label">Status : {{manga.status}}</ion-label>
+          </div>
+          <div>
+            <ion-label class="label">Start date : {{manga.startDate.day}}/{{manga.startDate.month}}/{{manga.startDate.year}}</ion-label>
+            <ion-label class="label">End date : {{manga.endDate.day}}/{{manga.endDate.month}}/{{manga.endDate.year}}</ion-label>
+          </div>
+        </div>
+
+
+        <div class="white"></div>
+        <div>
+          <div class="scores">
+            <ion-label>Average score : {{manga.averageScore}}</ion-label>
+            <ion-label>Mean score : {{manga.meanScore}}</ion-label>
+            <ion-label>Favourites : {{manga.favourites}}</ion-label>
+          </div>
+          <div class="titles">
+            <h2>Alternative titles :</h2>
+            <ion-label *ngIf="manga.title.romaji">Romaji : {{manga.title.romaji}}</ion-label><br/>
+            <ion-label *ngIf="manga.title.english">English : {{manga.title.english}}</ion-label><br/>
+            <ion-label *ngIf="manga.title.native">Native : {{manga.title.native}}</ion-label><br/>
+          </div>
+        </div>
+
+
+        <div class="white"></div>
+        <div>
+          <div class="genres">
+            <ion-label>Genres : </ion-label>
+            <ion-label *ngFor="let genre of manga.genres">{{genre}}, </ion-label>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

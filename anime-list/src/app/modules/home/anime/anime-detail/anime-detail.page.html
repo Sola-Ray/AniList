@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <div>
+      <ion-title *ngIf="anime">{{anime.title.romaji}}</ion-title>
+      <ion-icon (click)="return()" name="chevron-back-outline"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="anime" class="content">
+  <div class="pictures">
+    <img src="{{anime.bannerImage}}">
+    <img class="cover" src="{{anime.coverImage.medium}}">
+    <ion-label class="title">{{anime.title.romaji}}</ion-label>
+  </div>
+
+  <ion-card class="synopsis">
+    <ion-card-header>
+      <ion-card-title>Synopsis</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label class="label" [innerHTML]="anime.description"></ion-label>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="info-card">
+    <ion-card-header>
+      <ion-card-title>Infos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="infos">
+
+
+        <div class="white"></div>
+        <div>
+          <ion-container *ngIf="anime.episodes && anime.duration">
+            <ion-label class="label">{{anime.episodes}} episode(s) </ion-label>
+            <ion-label class="label">{{anime.duration}} min </ion-label>
+          </ion-container>
+          <ion-container *ngIf="!anime.episodes && !anime.duration">
+            <ion-label class="label">? episode(s) </ion-label>
+            <ion-label class="label">? min </ion-label>
+          </ion-container>
+          <div>
+            <ion-label class="label">Status : {{anime.status}}</ion-label>
+          </div>
+          <div>
+            <ion-label class="label">Season Year : {{anime.season}} {{anime.seasonYear}}</ion-label>
+          </div>
+        </div>
+
+
+        <div class="white"></div>
+        <div>
+          <div class="scores">
+            <ion-label>Average score : {{anime.averageScore}} </ion-label>
+            <ion-label>Mean score : {{anime.meanScore}} </ion-label>
+            <ion-label>Favourites : {{anime.favourites}} </ion-label>
+          </div>
+          <div class="titles">
+            <h2>Alternative titles :</h2>
+            <ion-label *ngIf="anime.title.romaji">Romaji : {{anime.title.romaji}}</ion-label><br/>
+            <ion-label *ngIf="anime.title.english">English : {{anime.title.english}}</ion-label><br/>
+            <ion-label *ngIf="anime.title.native">Native : {{anime.title.native}}</ion-label><br/>
+          </div>
+        </div>
+
+
+        <div class="white"></div>
+        <div>
+          <div class="genres">
+            <ion-label>Genres : </ion-label>
+            <ion-label *ngFor="let genre of anime.genres">{{genre}}, </ion-label>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
