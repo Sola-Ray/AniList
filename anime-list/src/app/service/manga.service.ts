@@ -5,7 +5,6 @@ import {Observable} from 'rxjs';
 
 
 const queries = {
-  // eslint-disable-next-line max-len
   query : (page: number, perPage: number) => `query{Page(page:${page},perPage: ${perPage}){media(type: MANGA){id type title { romaji english native } description startDate { year month day } status format source coverImage { extraLarge large medium } bannerImage synonyms genres averageScore isAdult chapters volumes } } }`,
   queryDetail : (id: number) => `query{  Page(page:1,perPage:1){media(type: MANGA, id: ${id} ) { id type title {romaji english native } description status startDate { year month day } endDate { year month day } format source coverImage { extraLarge large medium} bannerImage synonyms genres averageScore isAdult chapters volumes meanScore favourites}}}`,
 };
@@ -21,13 +20,15 @@ export class MangaService {
     const body = JSON.stringify({ query : queries.query(page, perPage), variables: null});
     console.log(body);
 
-    return this.http.post<any>(environment.aniListUri, body, {headers: {'Content-Type' : 'application/json','Accept' : 'application/json' }});
+    const header = {'Content-Type' : 'application/json', 'Accept' : 'application/json' };
+
+    return this.http.post<any>(environment.aniListUri, body, {headers: header});
   }
 
   getManga(id: number): Observable<any> {
     const body = JSON.stringify({ query : queries.queryDetail(id), variables: null});
     console.log(body);
-
-    return this.http.post<any>(environment.aniListUri, body, {headers: {'Content-Type' : 'application/json','Accept' : 'application/json' }});
+    const header = {'Content-Type' : 'application/json', 'Accept' : 'application/json' };
+    return this.http.post<any>(environment.aniListUri, body, {headers: header});
   }
 }

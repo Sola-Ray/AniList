@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <div>
-      <ion-title *ngIf="manga">{{manga.title.romaji}}</ion-title>
-      <ion-icon (click)="return()" name="chevron-back-outline"></ion-icon>
+    <div class="title">
+      <ion-icon class="element return-btn" (click)="return()" name="chevron-back-outline"></ion-icon>
+      <ion-title class="element" *ngIf="manga">{{manga.title.romaji}}</ion-title>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -37,16 +37,18 @@
             <ion-label class="label">{{manga.chapters}} chapitres </ion-label>
             <ion-label class="label">{{manga.volumes}} volumes </ion-label>
           </ng-container>
-          <ng-container *ngIf="!manga.chapters && !manga.volumes">
-            <ion-label class="label">? chapitres </ion-label>
+          <ion-content *ngIf="!manga.chapters && !manga.volumes">
+            <ion-label class="label">? chapters </ion-label>
             <ion-label class="label">? volumes </ion-label>
-          </ng-container>
+          </ion-content>
           <div>
             <ion-label class="label">Status : {{manga.status}}</ion-label>
           </div>
           <div>
-            <ion-label class="label">Start date : {{manga.startDate.day}}/{{manga.startDate.month}}/{{manga.startDate.year}}</ion-label>
-            <ion-label class="label">End date : {{manga.endDate.day}}/{{manga.endDate.month}}/{{manga.endDate.year}}</ion-label>
+            <ion-label *ngIf="manga.startDate.year" class="label">Start date : {{manga.startDate.day}}/{{manga.startDate.month}}/{{manga.startDate.year}}</ion-label>
+            <ion-label *ngIf="!manga.startDate.year" class="label">Start date : Not started yet</ion-label>
+            <ion-label *ngIf="manga.endDate.year" class="label">End date : {{manga.endDate.day}}/{{manga.endDate.month}}/{{manga.endDate.year}}</ion-label>
+            <ion-label *ngIf="!manga.endDate.year" class="label">End date : Not finished yet</ion-label>
           </div>
         </div>
 
@@ -54,15 +56,15 @@
         <div class="white"></div>
         <div>
           <div class="scores">
-            <ion-label>Average score : {{manga.averageScore}}</ion-label>
-            <ion-label>Mean score : {{manga.meanScore}}</ion-label>
-            <ion-label>Favourites : {{manga.favourites}}</ion-label>
+            <ion-label>Average score : {{manga.averageScore}} </ion-label>
+            <ion-label>Mean score : {{manga.meanScore}} </ion-label>
+            <ion-label>Favourites : {{manga.favourites}} </ion-label>
           </div>
           <div class="titles">
             <h2>Alternative titles :</h2>
-            <ion-label *ngIf="manga.title.romaji">Romaji : {{manga.title.romaji}}</ion-label><br/>
-            <ion-label *ngIf="manga.title.english">English : {{manga.title.english}}</ion-label><br/>
-            <ion-label *ngIf="manga.title.native">Native : {{manga.title.native}}</ion-label><br/>
+            <ion-label *ngIf="manga.title.romaji">Romaji : {{manga.title.romaji}}<br/></ion-label>
+            <ion-label *ngIf="manga.title.english">English : {{manga.title.english}}<br/></ion-label>
+            <ion-label *ngIf="manga.title.native">Native : {{manga.title.native}}<br/></ion-label>
           </div>
         </div>
 
@@ -71,7 +73,7 @@
         <div>
           <div class="genres">
             <ion-label>Genres : </ion-label>
-            <ion-label *ngFor="let genre of manga.genres">{{genre}}, </ion-label>
+            <ion-label *ngFor="let genre of manga.genres">{{genre}}  </ion-label>
           </div>
         </div>
       </div>
