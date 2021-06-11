@@ -41,4 +41,8 @@ export class MangaPage implements OnInit {
   navigateToDetail(manga: Manga): void {
     this.router.navigateByUrl(`/manga/${manga.id}`);
   }
+
+  addToFavorite(): void {
+    console.log('added');
+  }
 }

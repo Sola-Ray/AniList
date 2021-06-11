@@ -1,8 +1,20 @@
 .mangas {
   width: 100%;
   .card {
-    margin: 15px;
-    width: 100%;
+    border: 2px solid var(--ion-border-color);
+    horiz-align: center;
+    width: 95%;
+    .header {
+      width: 100%;
+      .favorite-icon {
+        display: inline-block;
+        font-size: 25px;
+        float: right;
+      }
+      .title {
+        display: inline-block;
+      }
+    }
     .img {
       float: left;
       margin-right: 15px;

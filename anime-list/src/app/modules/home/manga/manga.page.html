@@ -10,20 +10,21 @@
     <ion-item *ngFor="let manga of mangas">
       <div class="mangas">
       <ion-card class="card" (click)="navigateToDetail(manga)">
-          <ion-card-header>
-            <ion-card-title>{{manga.title.romaji}}</ion-card-title>
+          <ion-card-header class="header">
+            <ion-card-title (click)="addToFavorite()" class="title">{{manga.title.romaji}}</ion-card-title>
+            <ion-icon class="favorite-icon" name="star-outline"></ion-icon>
           </ion-card-header>
-          <ion-card-content>
+        <ion-card-content>
             <img class="img" src="{{manga.coverImage.medium}}" align="left">
             <ion-label class="label">{{manga.startDate.year}}</ion-label>
-            <ion-content *ngIf="manga.chapters && manga.volumes">
+            <ng-container *ngIf="manga.chapters && manga.volumes">
             <ion-label class="label">{{manga.chapters}} chapitres</ion-label>
             <ion-label class="label">{{manga.volumes}} volumes</ion-label>
-            </ion-content>
-            <ion-content *ngIf="!manga.chapters && !manga.volumes">
+            </ng-container>
+            <ng-container *ngIf="!manga.chapters && !manga.volumes">
               <ion-label class="label">? chapters</ion-label>
               <ion-label class="label">? volumes</ion-label>
-            </ion-content>
+            </ng-container>
             <ion-label class="label"> Average score : {{manga.averageScore}} / 100</ion-label>
             <ion-label class="label"> Status : {{manga.status}}</ion-label>
           </ion-card-content>
