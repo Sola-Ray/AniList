@@ -1,8 +1,9 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {IonInfiniteScroll} from '@ionic/angular';
+import {IonInfiniteScroll, ModalController} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {Anime} from '../../../model/Anime';
 import {AnimeService} from '../../../service/anime.service';
+import {FilterAnimeModalComponent} from './component/filter-anime-modal/filter-anime-modal.component';
 
 // Appelle le animeComponent
 
@@ -13,12 +14,22 @@ import {AnimeService} from '../../../service/anime.service';
 })
 export class AnimePage implements OnInit {
 
-  constructor() {}
+  constructor(public modalController: ModalController) { }
 
-  ngOnInit(): void {
+  ngOnInit() {}
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: FilterAnimeModalComponent,
+      //cssClass: 'my-custom-class'
+      componentProps: {
+        'date': new Date()
+      }
+    });
+    return await modal.present();
   }
 
   async onFilter() {
-    
+    await this.presentModal();
   }
 }

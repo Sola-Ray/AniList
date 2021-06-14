@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import { ModalController} from '@ionic/angular';
 
 @Component({
   selector: 'app-filter-anime-modal',
@@ -7,8 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterAnimeModalComponent implements OnInit {
 
-  constructor() { }
+  rangeValue = 1950;
+  @Input() date: Date;
 
-  ngOnInit() {}
+  constructor(private modalController: ModalController) {
+  }
 
+  ngOnInit() {
+  }
+
+  return(): void {
+    this.modalController.dismiss();
+  }
 }

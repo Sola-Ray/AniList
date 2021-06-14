@@ -1,3 +1,18 @@
-<p>
-  filter-anime-modal works!
-</p>
+<ion-header>
+  <ion-toolbar class="title">
+    <div>
+      <ion-title class="element">Filters</ion-title>
+      <ion-icon class="element return-btn" (click)="return()" name="chevron-back-outline"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-item>
+  <ng-container *ngIf="date">
+    <ion-range min="1900" max="{{ date.getFullYear() }}" color="secondary" [value]="date.getFullYear()" pin="true">
+      <ion-label slot="start">1900</ion-label>
+      <ion-label slot="end">{{date.getFullYear()}}</ion-label>
+    </ion-range>
+  </ng-container>
+
+</ion-item>

@@ -11,7 +11,7 @@ import {AnimeService} from '../../../../service/anime.service';
 })
 export class AnimeDetailPage implements OnInit {
 
-  animeId!: number
+  animeId!: number;
   anime!: Anime;
   constructor(private activeRoute: ActivatedRoute,
               private animeService: AnimeService,
@@ -22,7 +22,7 @@ export class AnimeDetailPage implements OnInit {
     console.log(this.animeId);
     this.animeService.getAnime(this.animeId).subscribe((result) => {
       this.anime = result.data.Page.media[0];
-    })
+    });
   }
   return(): void {
     this.location.back();
