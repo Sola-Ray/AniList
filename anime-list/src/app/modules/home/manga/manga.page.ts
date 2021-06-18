@@ -1,8 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MangaService} from '../../../service/manga.service';
 import {Manga} from '../../../model/Manga';
 import {IonInfiniteScroll} from '@ionic/angular';
 import {Router} from '@angular/router';
+import {DatabaseService} from '../../../service/database.service';
 
 @Component({
   selector: 'app-manga',
@@ -14,7 +15,8 @@ export class MangaPage implements OnInit {
   page = 1;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(private mangaService: MangaService,
-              private router: Router) {}
+              private router: Router,
+              private database: DatabaseService) {}
 
   ngOnInit(): void {
     this.mangaService.getMangas(this.page,20).subscribe((res) => {
@@ -30,7 +32,7 @@ export class MangaPage implements OnInit {
     this.infiniteScroll = event.target;
     console.log('infinite');
     this.mangaService.getMangas(this.page,20).subscribe((res) => {
-      for(let i= 0; i < res.data.Page.media.length; i++) {
+      for (let i= 0; i < res.data.Page.media.length; i++) {
         this.mangas.push(res.data.Page.media[i]);
       }
     });
@@ -40,9 +42,5 @@ export class MangaPage implements OnInit {
 
   navigateToDetail(manga: Manga): void {
     this.router.navigateByUrl(`/manga/${manga.id}`);
-  }
-
-  addToFavorite(): void {
-    console.log('added');
   }
 }
