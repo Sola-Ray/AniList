@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { AnimePageRoutingModule } from './anime-routing.module';
 
 import { AnimePage } from './anime.page';
-import {AnimeCardComponent} from './component/anime-card/anime-card.component';
 
 @NgModule({
     imports: [
@@ -19,6 +18,6 @@ import {AnimeCardComponent} from './component/anime-card/anime-card.component';
     exports: [
         AnimePage
     ],
-  declarations: [AnimePage, AnimeCardComponent]
+  declarations: [AnimePage]
 })
 export class AnimePageModule {}

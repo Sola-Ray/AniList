@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AnimeDetailPageRoutingModule } from './anime-detail-routing.module';
 
 import { AnimeDetailPage } from './anime-detail.page';
-import {AnimeCardComponent} from '../component/anime-card/anime-card.component';
+//import {AnimeCardComponent} from '../component/anime-card/anime-card.component';
 import {FilterAnimeModalComponent} from '../component/filter-anime-modal/filter-anime-modal.component';
 
 @NgModule({
@@ -17,6 +17,6 @@ import {FilterAnimeModalComponent} from '../component/filter-anime-modal/filter-
     IonicModule,
     AnimeDetailPageRoutingModule
   ],
-  declarations: [AnimeDetailPage, AnimeCardComponent, FilterAnimeModalComponent]
+  declarations: [AnimeDetailPage, FilterAnimeModalComponent]
 })
 export class AnimeDetailPageModule {}

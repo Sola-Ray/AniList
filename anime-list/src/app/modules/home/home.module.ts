@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
   declarations: [HomePage]
 })

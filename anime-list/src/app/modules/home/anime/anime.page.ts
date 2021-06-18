@@ -1,11 +1,9 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonInfiniteScroll, ModalController} from '@ionic/angular';
-import {Router} from '@angular/router';
+import {FilterAnimeModalComponent} from './component/filter-anime-modal/filter-anime-modal.component';
 import {Anime} from '../../../model/Anime';
 import {AnimeService} from '../../../service/anime.service';
-import {FilterAnimeModalComponent} from './component/filter-anime-modal/filter-anime-modal.component';
-
-// Appelle le animeComponent
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-anime',
@@ -14,22 +12,82 @@ import {FilterAnimeModalComponent} from './component/filter-anime-modal/filter-a
 })
 export class AnimePage implements OnInit {
 
-  constructor(public modalController: ModalController) { }
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  modal: HTMLIonModalElement;
+  season: string;
+  seasonYear: number;
+  animes: Anime[] = [];
+  page = 1;
 
-  ngOnInit() {}
+  constructor(public modalController: ModalController, private animeService: AnimeService,
+              private router: Router) { }
 
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: FilterAnimeModalComponent,
-      //cssClass: 'my-custom-class'
-      componentProps: {
-        'date': new Date()
+  ngOnInit() {
+    if(this.season != null && this.seasonYear != null) {
+      this.loadFilteredData(this.season, this.seasonYear);
+    } else {
+      this.loadUnfilteredData();
+    }
+    this.page++;
+  }
+
+  loadData(event) {
+    this.infiniteScroll = event.target;
+
+    if(this.season != null && this.seasonYear != null) {
+      this.loadFilteredData(this.season, this.seasonYear);
+    } else {
+      this.loadUnfilteredData();
+    }
+    this.page++;
+    this.infiniteScroll.complete();
+  }
+
+  navigateToDetail(anime: Anime): void {
+    this.router.navigateByUrl(`/anime/${anime.id}`);
+  }
+
+  loadFilteredData(season: string, seasonYear: number): void {
+    this.animeService.getAnimesBySeasonYear(this.page,20, season, seasonYear).subscribe((res) => {
+      for(let i= 0; i < res.data.Page.media.length; i++) {
+        this.animes.push(res.data.Page.media[i]);
       }
     });
-    return await modal.present();
+  }
+
+  loadUnfilteredData(): void {
+    this.animeService.getAnimes(this.page,20).subscribe((res) => {
+      for(let i= 0; i < res.data.Page.media.length; i++) {
+        this.animes.push(res.data.Page.media[i]);
+      }
+    });
+  }
+
+  async presentModal() {
+    this.modal = await this.modalController.create({
+      component: FilterAnimeModalComponent,
+      componentProps: {
+        date: new Date()
+      }
+    });
+    return await this.modal.present();
   }
 
   async onFilter() {
     await this.presentModal();
+
+    const { data } = await this.modal.onWillDismiss();
+
+    if(data.season != null && data.seasonYear != null) {
+      this.season = data.season.Season.value;
+      this.seasonYear = data.seasonYear;
+      this.animes = [];
+      this.loadFilteredData(this.season, this.seasonYear);
+    } else if(data.stop) {
+      this.animes = [];
+      this.seasonYear = null;
+      this.season = null;
+      this.loadUnfilteredData();
+    }
   }
 }

@@ -9,3 +9,18 @@
     margin-right: 2%;
   }
 }
+.animes {
+  width: 100%;
+  .card {
+    margin: 15px;
+    width: 100%;
+    .img {
+      float: left;
+      margin-right: 15px;
+      margin-bottom: 15px;
+    }
+    .label {
+      margin: 10px;
+    }
+  }
+}

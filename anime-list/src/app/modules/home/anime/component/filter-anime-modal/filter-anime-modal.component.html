@@ -7,12 +7,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-item>
-  <ng-container *ngIf="date">
-    <ion-range min="1900" max="{{ date.getFullYear() }}" color="secondary" [value]="date.getFullYear()" pin="true">
-      <ion-label slot="start">1900</ion-label>
-      <ion-label slot="end">{{date.getFullYear()}}</ion-label>
-    </ion-range>
-  </ng-container>
+<ion-content>
+  <ion-button size="default" color="dark" (click)="showPicker()">
+    Season Picker
+  </ion-button>
 
-</ion-item>
+  <ion-item>
+    <ng-container *ngIf="date">
+      <ion-range id="yearRange" min="1900" max="{{ date.getFullYear() }}" color="dark" [value]="rangeValue" pin="true"
+                 [(ngModel)]="rangeValue">
+        <ion-label slot="start">1900</ion-label>
+        <ion-label slot="end">{{date.getFullYear()}}</ion-label>
+      </ion-range>
+    </ng-container>
+  </ion-item>
+
+  <ion-button size="default" color="dark" (click)="stop()">
+    Stop filtering
+  </ion-button>
+
+  <ion-button size="default" color="dark" (click)="validate()">
+    Start !
+  </ion-button>
+</ion-content>
