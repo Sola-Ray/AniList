@@ -12,6 +12,7 @@
       <ion-card class="card" (click)="navigateToDetail(manga)">
           <ion-card-header class="header">
             <ion-card-title class="title">{{manga.title.romaji}}</ion-card-title>
+            <ion-icon *ngIf="manga.isFavorite" class="favorite-icon" color="danger" name="star-outline"></ion-icon>
           </ion-card-header>
         <ion-card-content>
             <img class="img" src="{{manga.coverImage.medium}}" align="left">

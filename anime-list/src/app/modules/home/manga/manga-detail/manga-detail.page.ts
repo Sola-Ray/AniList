@@ -33,26 +33,27 @@ export class MangaDetailPage implements OnInit, AfterViewInit {
   async ngAfterViewInit(): Promise<void> {
     await this.database.init();
     await this.database.openStore("favoriteMangas");
-
-    let favorites = await this.database.getAllValues();
-    this.isFavorite = favorites.includes(String(this.mangaId));
-    console.log(this.isFavorite);
+    let favorites = [];
+    let values = await this.database.getAllValues();
+    for (let i = 0; i < values.length; i++) {
+      favorites.push(JSON.parse(values[i]));
+    }
+    for (let j = 0; j < favorites.length; j++) {
+      if (favorites[j].id == this.mangaId) {
+        this.isFavorite = true;
+      }
+    }
   }
 
   async addToFavorite(): Promise<void> {
 
-    await this.database.setItem(String(this.mangaId), String(this.mangaId));
-    let result = await this.database.getItem(String(this.mangaId));
-    if(result != null) {
-      this.isFavorite = true;
-    }
+    let data: any = {'id':this.mangaId,'name':this.manga.title.romaji,'type':'MANGA'};
+    await this.database.setItem(String(this.mangaId), JSON.stringify(data));
+    this.isFavorite = true;
   }
 
   async removeFromFavorite(): Promise<void> {
     await this.database.removeItem(String(this.mangaId));
-    let result = await this.database.getItem(String(this.mangaId));
-    if(result == null) {
-      this.isFavorite = false;
-    }
+    this.isFavorite = false;
   }
 }
