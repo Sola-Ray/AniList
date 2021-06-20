@@ -19,7 +19,6 @@ export class DatabaseService {
     this.platform = Capacitor.getPlatform();
     this.store = CapacitorDataStorageSqlite;
     this.isService = true;
-    console.log('in database init ',this.platform,this.isService)
   }
   /**
    * Open a Store
@@ -59,40 +58,6 @@ export class DatabaseService {
       }
     } else {
       return Promise.reject(new Error("close: Store not opened"));
-    }
-  }
-  /**
-   * Check if a store is opened
-   * @param dbName
-   * @returns
-   */
-  async isStoreOpen(dbName: String): Promise<void> {
-    if(this.isService && this.store != null) {
-      try {
-        const ret = await this.store.isStoreOpen({database:dbName});
-        return Promise.resolve(ret);
-      } catch (err) {
-        return Promise.reject(err);
-      }
-    } else {
-      return Promise.reject(new Error("isStoreOpen: Store not opened"));
-    }
-  }
-  /**
-   * Check if a store already exists
-   * @param dbName
-   * @returns
-   */
-  async isStoreExists(dbName: String): Promise<void> {
-    if(this.isService && this.store != null) {
-      try {
-        const ret = await this.store.isStoreExists({database:dbName});
-        return Promise.resolve(ret);
-      } catch (err) {
-        return Promise.reject(err);
-      }
-    } else {
-      return Promise.reject(new Error("isStoreExists: Store not opened"));
     }
   }
   /**
@@ -141,10 +106,8 @@ export class DatabaseService {
       if(key.length > 0) {
         try {
           const {value} = await this.store.get({ key });
-          console.log("in getItem value ",value)
           return Promise.resolve(value);
         } catch (err) {
-          console.log(`$$$$$ in getItem key: ${key} err: ${JSON.stringify(err)}`)
           return Promise.reject(err);
         }
       } else {
@@ -154,36 +117,6 @@ export class DatabaseService {
       return Promise.reject(new Error("getItem: Store not opened"));
     }
 
-  }
-  async isKey(key:string): Promise<boolean> {
-    if(this.isService && this.store != null) {
-      if(key.length > 0) {
-        try {
-          const {result} = await this.store.iskey({ key });
-          return Promise.resolve(result);
-        } catch (err) {
-          return Promise.reject(err);
-        }
-      } else {
-        return Promise.reject(new Error("isKey: Must give a key"));
-      }
-    } else {
-      return Promise.reject(new Error("isKey: Store not opened"));
-    }
-
-  }
-
-  async getAllKeys(): Promise<Array<string>> {
-    if(this.isService && this.store != null) {
-      try {
-        const {keys} = await this.store.keys();
-        return Promise.resolve(keys);
-      } catch (err) {
-        return Promise.reject(err);
-      }
-    } else {
-      return Promise.reject(new Error("getAllKeys: Store not opened"));
-    }
   }
   async getAllValues(): Promise<Array<string>> {
     if(this.isService && this.store != null) {

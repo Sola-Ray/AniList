@@ -21,7 +21,7 @@ export class MangaPage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.database.init();
-    await this.database.openStore("favoriteMangas");
+    await this.database.openStore("favoriteManga");
 
     let values = await this.database.getAllValues();
     for(let i = 0; i < values.length; i++) {
@@ -29,13 +29,10 @@ export class MangaPage implements OnInit {
     }
 
    this.requestDatas();
-    this.page++;
-    console.log(this.mangas);
   }
 
   loadData(event) {
     this.infiniteScroll = event.target;
-    console.log('infinite');
     this.requestDatas();
     this.infiniteScroll.complete();
     }

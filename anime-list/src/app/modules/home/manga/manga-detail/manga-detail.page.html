@@ -3,8 +3,9 @@
     <div class="title" *ngIf="manga">
       <ion-icon class="element" (click)="return()" name="chevron-back-outline"></ion-icon>
       <ion-title class="element">{{manga.title.romaji}}</ion-title>
-      <ion-icon *ngIf="!isFavorite" (click)="addToFavorite()" class="favorite-icon" name="star-outline"></ion-icon>
-      <ion-icon *ngIf="isFavorite" (click)="removeFromFavorite()" color="danger" class="favorite-icon" name="star-outline"></ion-icon>
+      <ion-icon class="icon" (click)="share()" name="share-social-outline"></ion-icon>
+      <ion-icon *ngIf="!isFavorite" (click)="addToFavorite()" class="icon" name="star-outline"></ion-icon>
+      <ion-icon *ngIf="isFavorite" (click)="removeFromFavorite()" color="danger" class="icon" name="star-outline"></ion-icon>
     </div>
   </ion-toolbar>
 </ion-header>

@@ -10,6 +10,11 @@
   }
 }
 .animes {
+  .favorite-icon {
+    display: inline-block;
+    font-size: 25px;
+    float: right;
+  }
   width: 100%;
   .card {
     margin: 15px;
@@ -24,3 +29,4 @@
     }
   }
 }
+

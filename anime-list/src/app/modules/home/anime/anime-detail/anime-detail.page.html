@@ -1,8 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <div>
-      <ion-title *ngIf="anime">{{anime.title.romaji}}</ion-title>
-      <ion-icon (click)="return()" name="chevron-back-outline"></ion-icon>
+    <div class="title" *ngIf="anime">
+      <ion-icon class="element" (click)="return()" name="chevron-back-outline"></ion-icon>
+      <ion-title class="element" >{{anime.title.romaji}}</ion-title>
+      <ion-icon (click)="share()" class="icon" name="share-social-outline"></ion-icon>
+      <ion-icon *ngIf="!isFavorite" (click)="addToFavorite()" class="icon" name="star-outline"></ion-icon>
+      <ion-icon *ngIf="isFavorite" (click)="removeFromFavorite()" color="danger" class="icon" name="star-outline"></ion-icon>
     </div>
   </ion-toolbar>
 </ion-header>

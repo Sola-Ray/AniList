@@ -4,6 +4,7 @@ import {FilterAnimeModalComponent} from './component/filter-anime-modal/filter-a
 import {Anime} from '../../../model/Anime';
 import {AnimeService} from '../../../service/anime.service';
 import {Router} from '@angular/router';
+import {DatabaseService} from '../../../service/database.service';
 
 @Component({
   selector: 'app-anime',
@@ -17,12 +18,22 @@ export class AnimePage implements OnInit {
   season: string;
   seasonYear: number;
   animes: Anime[] = [];
+  favorites = [];
   page = 1;
 
   constructor(public modalController: ModalController, private animeService: AnimeService,
-              private router: Router) { }
+              private router: Router,
+              private database: DatabaseService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.database.init();
+    await this.database.openStore("favoriteAnime");
+
+    let values = await this.database.getAllValues();
+    for(let i = 0; i < values.length; i++) {
+      this.favorites.push(JSON.parse(values[i]));
+    }
+
     if(this.season != null && this.seasonYear != null) {
       this.loadFilteredData(this.season, this.seasonYear);
     } else {
@@ -49,18 +60,25 @@ export class AnimePage implements OnInit {
 
   loadFilteredData(season: string, seasonYear: number): void {
     this.animeService.getAnimesBySeasonYear(this.page,20, season, seasonYear).subscribe((res) => {
-      for(let i= 0; i < res.data.Page.media.length; i++) {
-        this.animes.push(res.data.Page.media[i]);
-      }
+      this.requestDatas(res);
     });
   }
 
   loadUnfilteredData(): void {
     this.animeService.getAnimes(this.page,20).subscribe((res) => {
-      for(let i= 0; i < res.data.Page.media.length; i++) {
-        this.animes.push(res.data.Page.media[i]);
-      }
+      this.requestDatas(res);
     });
+  }
+
+  private requestDatas(res) {
+    for (let i = 0; i < res.data.Page.media.length; i++) {
+      for (let j = 0; j < this.favorites.length; j++) {
+        if (this.favorites[j].id == res.data.Page.media[i].id) {
+          res.data.Page.media[i].isFavorite = true;
+        }
+      }
+      this.animes.push(res.data.Page.media[i]);
+    }
   }
 
   async presentModal() {

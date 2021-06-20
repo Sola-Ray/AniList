@@ -21,11 +21,6 @@ const routes: Routes = [
       },
     ]
   },
-  {
-    path: '',
-    redirectTo: 'anime',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({

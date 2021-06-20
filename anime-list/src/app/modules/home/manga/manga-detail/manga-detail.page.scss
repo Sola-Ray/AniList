@@ -4,8 +4,13 @@
     horiz-align: center;
     font-size: 25px;
   }
+  .icon {
+    display: inline-block;
+    font-size: 25px;
+    float: right;
+    margin: 10px;
+  }
 }
-
 .content {
   text-align: center;
 }
@@ -25,7 +30,6 @@
     bottom: 60px;
   }
 }
-
 .synopsis {
   .label {
     font-size: 17px;
@@ -33,13 +37,13 @@
 }
 
 .info-card {
-    .white {
-      width: 50%;
-      border: 1px solid #ffffff;
-      margin-top: 5px;
-      margin-bottom: 10px;
-      margin-left: 25%;
-    }
+  .white {
+    width: 50%;
+    border: 1px solid #ffffff;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 25%;
+  }
   .infos {
     .label {
       font-size: 17px;
@@ -47,7 +51,3 @@
     }
   }
 }
-
-
-
-

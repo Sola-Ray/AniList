@@ -7,7 +7,7 @@ import {Manga} from '../../model/Manga';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  currentTab: string = 'anime';
+  currentTab!: string;
 
   constructor() {}
 
@@ -16,6 +16,5 @@ export class HomePage implements OnInit {
 
   public onTabChanged(tabChanged: any) {
     this.currentTab = tabChanged.tab;
-
   }
 }
