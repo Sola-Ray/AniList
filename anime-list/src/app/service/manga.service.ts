@@ -21,7 +21,6 @@ export class MangaService {
 
   getMangas(page: number, perPage: number): Observable<any> {
     const body = JSON.stringify({ query : queries.query(page, perPage), variables: null});
-    console.log(body);
 
     const header = {'Content-Type' : 'application/json', 'Accept' : 'application/json' };
 
@@ -30,7 +29,6 @@ export class MangaService {
 
   getManga(id: number): Observable<any> {
     const body = JSON.stringify({ query : queries.queryDetail(id), variables: null});
-    console.log(body);
     const header = {'Content-Type' : 'application/json', 'Accept' : 'application/json' };
     return this.http.post<any>(environment.aniListUri, body, {headers: header});
   }

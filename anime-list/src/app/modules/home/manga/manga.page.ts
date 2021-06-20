@@ -28,7 +28,7 @@ export class MangaPage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.database.init();
-    await this.database.openStore('favoriteMangas');
+    await this.database.openStore("favoriteManga");
 
     const values = await this.database.getAllValues();
     for(let i = 0; i < values.length; i++) {

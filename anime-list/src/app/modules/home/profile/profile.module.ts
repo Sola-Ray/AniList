@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
+import {FavoriteMangaPage} from './favorite-manga/favorite-manga.page';
+import {FavoriteAnimePage} from './favorite-anime/favorite-anime.page';
 
 @NgModule({
   imports: [

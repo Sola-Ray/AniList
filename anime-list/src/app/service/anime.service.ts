@@ -23,8 +23,6 @@ export class AnimeService {
 
   getAnimes(page: number, perPage: number): Observable<any> {
     const body = JSON.stringify({query: queries.query(page, perPage), variables: null});
-    console.log(body);
-
     return this.http.post<any>(environment.aniListUri, body, {
       headers: {
         'Content-Type': 'application/json',
@@ -34,10 +32,7 @@ export class AnimeService {
   }
 
   getAnimesBySeasonYear(page: number, perPage: number, season: string, seasonYear: number): Observable<any> {
-
     const body = JSON.stringify({query: queries.querySeasonYear(page, perPage, season, seasonYear), variables: null});
-    console.log(body);
-
     return this.http.post<any>(environment.aniListUri, body, {
       headers: {
         'Content-Type': 'application/json',
@@ -48,8 +43,6 @@ export class AnimeService {
 
   getAnime(id: number): Observable<any> {
     const body = JSON.stringify({query: queries.queryDetail(id), variables: null});
-    console.log(body);
-
     return this.http.post<any>(environment.aniListUri, body, {
       headers: {
         'Content-Type': 'application/json',

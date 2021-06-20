@@ -4,6 +4,7 @@ import {MangaService} from '../../../../service/manga.service';
 import {Manga} from '../../../../model/Manga';
 import {Location} from '@angular/common';
 import {DatabaseService} from '../../../../service/database.service';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'app-manga-detail',
@@ -21,7 +22,6 @@ export class MangaDetailPage implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.mangaId = Number(this.activeRoute.snapshot.paramMap.get('id'));
-    console.log(this.mangaId);
     this.mangaService.getManga(this.mangaId).subscribe((result) => {
       this.manga = result.data.Page.media[0];
     })
@@ -32,7 +32,7 @@ export class MangaDetailPage implements OnInit, AfterViewInit {
 
   async ngAfterViewInit(): Promise<void> {
     await this.database.init();
-    await this.database.openStore("favoriteMangas");
+    await this.database.openStore("favoriteManga");
     let favorites = [];
     let values = await this.database.getAllValues();
     for (let i = 0; i < values.length; i++) {
@@ -46,7 +46,6 @@ export class MangaDetailPage implements OnInit, AfterViewInit {
   }
 
   async addToFavorite(): Promise<void> {
-
     let data: any = {'id':this.mangaId,'name':this.manga.title.romaji,'type':'MANGA'};
     await this.database.setItem(String(this.mangaId), JSON.stringify(data));
     this.isFavorite = true;
@@ -56,4 +55,13 @@ export class MangaDetailPage implements OnInit, AfterViewInit {
     await this.database.removeItem(String(this.mangaId));
     this.isFavorite = false;
   }
+
+  async share(): Promise<void> {
+    await Share.share({
+      title: this.manga.title.romaji,
+      text: this.manga.description,
+      url: 'https://anilist.co/manga/'+this.mangaId,
+    });
+  }
+
 }

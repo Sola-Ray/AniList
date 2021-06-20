@@ -1,3 +1,16 @@
+.title {
+  .element {
+    display: inline-block;
+    horiz-align: center;
+    font-size: 25px;
+  }
+  .icon {
+    display: inline-block;
+    font-size: 25px;
+    float: right;
+    margin: 10px;
+  }
+}
 .content {
   text-align: center;
 }

@@ -6,8 +6,19 @@ import { ProfilePage } from './profile.page';
 const routes: Routes = [
   {
     path: '',
-    component: ProfilePage
-  }
+    component: ProfilePage,
+    children: [
+      {
+        path: 'anime-favorite',
+        loadChildren: () => import('./favorite-anime/favorite-anime.module').then( m => m.FavoriteAnimePageModule)
+      },
+      {
+        path: 'manga-favorite',
+        loadChildren: () => import('./favorite-manga/favorite-manga.module').then( m => m.FavoriteMangaPageModule)
+      }
+      ]
+  },
+
 ];
 
 @NgModule({
