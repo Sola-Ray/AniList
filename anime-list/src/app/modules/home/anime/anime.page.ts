@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonInfiniteScroll, ModalController} from '@ionic/angular';
+import {IonInfiniteScroll, ModalController, ToastController} from '@ionic/angular';
 import {FilterAnimeModalComponent} from './component/filter-anime-modal/filter-anime-modal.component';
 import {Anime} from '../../../model/Anime';
 import {AnimeService} from '../../../service/anime.service';
@@ -23,7 +23,8 @@ export class AnimePage implements OnInit {
 
   constructor(public modalController: ModalController, private animeService: AnimeService,
               private router: Router,
-              private database: DatabaseService) { }
+              private database: DatabaseService,
+  private toastController: ToastController) { }
 
   async ngOnInit() {
     await this.database.init();
@@ -101,11 +102,20 @@ export class AnimePage implements OnInit {
       this.seasonYear = data.seasonYear;
       this.animes = [];
       this.loadFilteredData(this.season, this.seasonYear);
+      this.presentToast('You have selected ' + this.season + ' ' + this.seasonYear);
     } else if(data.stop) {
       this.animes = [];
       this.seasonYear = null;
       this.season = null;
       this.loadUnfilteredData();
     }
+  }
+
+  async presentToast(text: string) {
+    const toast = await this.toastController.create({
+      message: text,
+      duration: 2000
+    });
+    toast.present();
   }
 }
