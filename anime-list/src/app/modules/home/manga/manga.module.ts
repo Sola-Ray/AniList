@@ -10,14 +10,12 @@ import { MangaPage } from './manga.page';
 import {AnimePageModule} from '../anime/anime.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        MangaPageRoutingModule,
-        AnimePageModule,
-
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    MangaPageRoutingModule,
+  ],
   declarations: [MangaPage]
 })
 export class MangaPageModule {}

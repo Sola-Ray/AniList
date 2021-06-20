@@ -12,10 +12,10 @@ export class Anime extends Media {
   season: Season;
   seasonYear: number;
 
-  constructor(id: number, description: string, seasonYear: number, bannerImage: string, genres: string[],
-              averageScore: number, isAdult: boolean, title: Title, coverImage: CoverImage, status: Status,
-              format: Format, season: Season, source: Source, episodes: number, duration: number, meanScore: number, favourites: number) {
-    super(id, description, bannerImage, genres, averageScore, isAdult, title, coverImage, status, format, source, meanScore, favourites);
+  constructor(id: number, description: string, bannerImage: string, genres: string[], averageScore: number, isAdult: boolean, title: Title,
+              coverImage: CoverImage, status: Status, format: Format, source: Source, meanScore: number, favourites: number, isFavorite: boolean,
+              episodes: number, duration: number, season: Season, seasonYear: number) {
+    super(id, description, bannerImage, genres, averageScore, isAdult, title, coverImage, status, format, source, meanScore, favourites, isFavorite);
     this.episodes = episodes;
     this.duration = duration;
     this.season = season;

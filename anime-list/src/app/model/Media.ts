@@ -18,10 +18,11 @@ export class Media {
   status: Status;
   format: Format;
   source: Source;
+  isFavorite: boolean;
 
   constructor(id: number, description: string, bannerImage: string, genres: string[],
               averageScore: number, isAdult: boolean, title: Title, coverImage: CoverImage, status: Status,
-              format: Format, source: Source, meanScore: number, favourites: number) {
+              format: Format, source: Source, meanScore: number, favourites: number, isFavorite: boolean) {
     this.id = id;
     this.description = description;
     this.bannerImage = bannerImage;
@@ -35,5 +36,6 @@ export class Media {
     this.source = source;
     this.meanScore = meanScore;
     this.favourites = favourites;
+    this.isFavorite = isFavorite;
   }
 }
