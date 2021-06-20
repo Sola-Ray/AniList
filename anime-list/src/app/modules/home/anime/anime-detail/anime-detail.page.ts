@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {Anime} from '../../../../model/Anime';
@@ -11,7 +11,7 @@ import {Share} from '@capacitor/share';
   templateUrl: './anime-detail.page.html',
   styleUrls: ['./anime-detail.page.scss'],
 })
-export class AnimeDetailPage implements OnInit {
+export class AnimeDetailPage implements OnInit, AfterViewInit {
 
   animeId!: number;
   anime!: Anime;
@@ -32,9 +32,9 @@ export class AnimeDetailPage implements OnInit {
   }
   async ngAfterViewInit(): Promise<void> {
     await this.database.init();
-    await this.database.openStore("favoriteAnime");
-    let favorites = [];
-    let values = await this.database.getAllValues();
+    await this.database.openStore('favoriteAnime');
+    const favorites = [];
+    const values = await this.database.getAllValues();
     for (let i = 0; i < values.length; i++) {
       favorites.push(JSON.parse(values[i]));
     }
@@ -46,7 +46,7 @@ export class AnimeDetailPage implements OnInit {
   }
 
   async addToFavorite(): Promise<void> {
-    let data: any = {'id':this.animeId,'name':this.anime.title.romaji,'type':'ANIME'};
+    const data: any = {id: this.animeId, name: this.anime.title.romaji, type:'ANIME'};
     await this.database.setItem(String(this.animeId), JSON.stringify(data));
     this.isFavorite = true;
   }
@@ -59,7 +59,7 @@ export class AnimeDetailPage implements OnInit {
     await Share.share({
       title: this.anime.title.romaji,
       text: this.anime.description,
-      url: 'https://anilist.co/anime/'+this.animeId,
+      url: 'https://anilist.co/anime/' + this.animeId,
     });
   }
 }

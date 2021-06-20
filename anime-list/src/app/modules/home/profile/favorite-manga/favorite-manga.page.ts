@@ -16,8 +16,8 @@ export class FavoriteMangaPage implements OnInit, AfterViewInit {
   }
   async ngAfterViewInit(): Promise<void> {
     await this.database.init();
-    await this.database.openStore("favoriteManga");
-    let values = await this.database.getAllValues();
+    await this.database.openStore('favoriteManga');
+    const values = await this.database.getAllValues();
     for(let i = 0; i < values.length; i++) {
       this.favorites.push(JSON.parse(values[i]));
     }
