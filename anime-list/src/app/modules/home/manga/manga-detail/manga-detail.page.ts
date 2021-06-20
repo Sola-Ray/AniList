@@ -24,7 +24,7 @@ export class MangaDetailPage implements OnInit, AfterViewInit {
     this.mangaId = Number(this.activeRoute.snapshot.paramMap.get('id'));
     this.mangaService.getManga(this.mangaId).subscribe((result) => {
       this.manga = result.data.Page.media[0];
-    })
+    });
   }
   return(): void {
     this.location.back();
@@ -32,21 +32,21 @@ export class MangaDetailPage implements OnInit, AfterViewInit {
 
   async ngAfterViewInit(): Promise<void> {
     await this.database.init();
-    await this.database.openStore("favoriteManga");
-    let favorites = [];
-    let values = await this.database.getAllValues();
+    await this.database.openStore('favoriteManga');
+    const favorites = [];
+    const values = await this.database.getAllValues();
     for (let i = 0; i < values.length; i++) {
       favorites.push(JSON.parse(values[i]));
     }
     for (let j = 0; j < favorites.length; j++) {
-      if (favorites[j].id == this.mangaId) {
+      if (favorites[j].id === this.mangaId) {
         this.isFavorite = true;
       }
     }
   }
 
   async addToFavorite(): Promise<void> {
-    let data: any = {'id':this.mangaId,'name':this.manga.title.romaji,'type':'MANGA'};
+    const data: any = {id: this.mangaId, name: this.manga.title.romaji, type: 'MANGA'};
     await this.database.setItem(String(this.mangaId), JSON.stringify(data));
     this.isFavorite = true;
   }
