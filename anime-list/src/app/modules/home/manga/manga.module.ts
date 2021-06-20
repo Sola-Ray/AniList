@@ -14,7 +14,6 @@ import { MangaPage } from './manga.page';
     FormsModule,
     IonicModule,
     MangaPageRoutingModule,
-
   ],
   declarations: [MangaPage]
 })

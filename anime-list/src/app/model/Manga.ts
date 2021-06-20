@@ -3,7 +3,6 @@ import {Title} from './Title';
 import {CoverImage} from './CoverImage';
 import {Status} from './Status';
 import {Source} from './Source';
-import {Season} from './Season';
 import {Format} from './Format';
 
 export class Manga extends Media {
@@ -12,11 +11,11 @@ export class Manga extends Media {
   startDate: object;
   endDate: object;
 
-  constructor(id: number, description: string, seasonYear: number, bannerImage: string, genres: string[],
-              averageScore: number, isAdult: boolean, title: Title, coverImage: CoverImage, status: Status,
-              format: Format, season: Season, source: Source, chapters: number, volumes: number,
-              startDate: object, endDate: object, meanScore: number, favourites: number) {
-    super(id, description, bannerImage, genres, averageScore, isAdult, title, coverImage, status, format, source, meanScore, favourites);
+
+  constructor(id: number, description: string, bannerImage: string, genres: string[], averageScore: number, isAdult: boolean,
+              title: Title, coverImage: CoverImage, status: Status, format: Format, source: Source, meanScore: number,
+              favourites: number, isFavorite: boolean, chapters: number, volumes: number, startDate: object, endDate: object) {
+    super(id, description, bannerImage, genres, averageScore, isAdult, title, coverImage, status, format, source, meanScore, favourites, isFavorite);
     this.chapters = chapters;
     this.volumes = volumes;
     this.startDate = startDate;
