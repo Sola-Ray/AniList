@@ -9,12 +9,15 @@ import { AnimePageRoutingModule } from './anime-routing.module';
 import { AnimePage } from './anime.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    AnimePageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        AnimePageRoutingModule
+    ],
+    exports: [
+        AnimePage
+    ],
   declarations: [AnimePage]
 })
 export class AnimePageModule {}

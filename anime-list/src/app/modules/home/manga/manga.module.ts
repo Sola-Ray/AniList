@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MangaPageRoutingModule } from './manga-routing.module';
 
 import { MangaPage } from './manga.page';
+import {AnimePageModule} from '../anime/anime.module';
 
 @NgModule({
   imports: [

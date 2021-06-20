@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +19,9 @@ import {MatButtonModule} from '@angular/material/button';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

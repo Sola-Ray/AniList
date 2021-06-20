@@ -6,8 +6,11 @@ import {Observable} from 'rxjs';
 
 const queries = {
   // eslint-disable-next-line max-len
-  query : (page: number, perPage: number) => `query{Page(page:${page},perPage: ${perPage}){media(type: ANIME){id type title { romaji english native } description season seasonYear status format source coverImage { extraLarge large medium } bannerImage synonyms genres averageScore isAdult episodes duration}}}`,
+  query : (page: number, perPage: number) => `query{Page(page:${page},perPage: ${perPage}){media(type: ANIME, isAdult:${false}){id type title { romaji english native } description season seasonYear status format source coverImage { extraLarge large medium } bannerImage synonyms genres averageScore isAdult episodes duration}}}`,
+  // eslint-disable-next-line max-len
   queryDetail : (id: number) => `query{  Page(page:1,perPage:1){media(type: ANIME, id: ${id} ) { id type title {romaji english native } description season seasonYear status format source coverImage { extraLarge large medium} bannerImage synonyms genres averageScore isAdult episodes duration meanScore favourites}}}`,
+  // eslint-disable-next-line max-len
+  querySeasonYear : (page: number, perPage: number, season: string, seasonYear: number) => `query{Page(page:${page},perPage: ${perPage}){media(type: ANIME, season:${season}, seasonYear:${seasonYear}, isAdult:${false}){id type title { romaji english native } description season seasonYear status format source coverImage {extraLarge large medium } bannerImage synonyms genres averageScore isAdult episodes duration}}}`
 };
 
 @Injectable({
@@ -15,19 +18,43 @@ const queries = {
 })
 export class AnimeService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getAnimes(page: number, perPage: number): Observable<any> {
-    const body = JSON.stringify({ query : queries.query(page, perPage), variables: null});
+    const body = JSON.stringify({query: queries.query(page, perPage), variables: null});
     console.log(body);
 
-    return this.http.post<any>(environment.aniListUri, body, {headers: {'Content-Type' : 'application/json','Accept' : 'application/json' }});
+    return this.http.post<any>(environment.aniListUri, body, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
+  }
+
+  getAnimesBySeasonYear(page: number, perPage: number, season: string, seasonYear: number): Observable<any> {
+
+    const body = JSON.stringify({query: queries.querySeasonYear(page, perPage, season, seasonYear), variables: null});
+    console.log(body);
+
+    return this.http.post<any>(environment.aniListUri, body, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
   }
 
   getAnime(id: number): Observable<any> {
-    const body = JSON.stringify({ query : queries.queryDetail(id), variables: null});
+    const body = JSON.stringify({query: queries.queryDetail(id), variables: null});
     console.log(body);
 
-    return this.http.post<any>(environment.aniListUri, body, {headers: {'Content-Type' : 'application/json','Accept' : 'application/json' }});
+    return this.http.post<any>(environment.aniListUri, body, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
   }
 }

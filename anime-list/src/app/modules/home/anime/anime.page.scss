@@ -1,3 +1,14 @@
+.title {
+  .element {
+    display: inline-block;
+    horiz-align: center;
+    font-size: 25px;
+  }
+  .return-btn {
+    float: right;
+    margin-right: 2%;
+  }
+}
 .animes {
   width: 100%;
   .card {
