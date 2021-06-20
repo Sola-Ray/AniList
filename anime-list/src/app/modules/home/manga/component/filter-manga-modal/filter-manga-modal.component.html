@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar class="title">
+    <div>
+      <ion-title class="element">Filters</ion-title>
+      <ion-icon class="element return-btn" (click)="return()" name="chevron-back-outline"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button size="default" color="dark" (click)="showPicker()">
+    Genre Picker
+  </ion-button>
+
+  <ion-item>
+    <ng-container *ngIf="date">
+      <ion-range id="yearRange" min="1940" max="{{ date.getFullYear() }}" color="dark" [value]="rangeValue" pin="true"
+                 [(ngModel)]="rangeValue">
+        <ion-label slot="start">1940</ion-label>
+        <ion-label slot="end">{{date.getFullYear()}}</ion-label>
+      </ion-range>
+    </ng-container>
+  </ion-item>
+
+  <ion-button size="default" color="dark" (click)="stop()">
+    Stop filtering
+  </ion-button>
+
+  <ion-button size="default" color="dark" (click)="validate()">
+    Start !
+  </ion-button>
+</ion-content>

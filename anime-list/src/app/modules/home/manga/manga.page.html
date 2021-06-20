@@ -1,6 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Mangas</ion-title>
+  <ion-toolbar class="title">
+    <ion-title class="element">Manga</ion-title>
+    <ion-icon class="element return-btn" name="filter-outline" (click)="onFilter()"></ion-icon>
+    <ion-label *ngIf="genre" class="sub-element">{{genre}} </ion-label>
+    <ion-label *ngIf="year" class="sub-element">{{year}}</ion-label>
   </ion-toolbar>
 </ion-header>
 
