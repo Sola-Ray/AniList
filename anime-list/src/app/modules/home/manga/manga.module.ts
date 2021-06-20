@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MangaPageRoutingModule } from './manga-routing.module';
 
 import { MangaPage } from './manga.page';
-import {AnimePageModule} from '../anime/anime.module';
+import {FilterMangaModalComponent} from './component/filter-manga-modal/filter-manga-modal.component';
 
 @NgModule({
   imports: [
@@ -16,6 +16,9 @@ import {AnimePageModule} from '../anime/anime.module';
     IonicModule,
     MangaPageRoutingModule,
   ],
-  declarations: [MangaPage]
+  exports: [
+    MangaPage,
+  ],
+  declarations: [MangaPage, FilterMangaModalComponent]
 })
 export class MangaPageModule {}

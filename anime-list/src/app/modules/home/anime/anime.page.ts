@@ -19,7 +19,7 @@ export class AnimePage implements OnInit {
   animes: Anime[] = [];
   page = 1;
 
-  constructor(public modalController: ModalController, private animeService: AnimeService,
+  constructor(private modalController: ModalController, private animeService: AnimeService,
               private router: Router, private toastController: ToastController) { }
 
   ngOnInit() {

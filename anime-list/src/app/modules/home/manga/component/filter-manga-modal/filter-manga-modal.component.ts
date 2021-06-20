@@ -5,15 +5,32 @@ import { PickerOptions } from '@ionic/core';
 
 @Component({
   selector: 'app-filter-anime-modal',
-  templateUrl: './filter-anime-modal.component.html',
-  styleUrls: ['./filter-anime-modal.component.scss'],
+  templateUrl: './filter-manga-modal.component.html',
+  styleUrls: ['./filter-manga-modal.component.scss'],
 })
-export class FilterAnimeModalComponent implements OnInit {
+export class FilterMangaModalComponent implements OnInit {
 
   date: Date;
   rangeValue;
 
-  season: string[] = ['WINTER', 'SPRING', 'SUMMER', 'FALL'];
+  genre: string[] = ['Action',
+    'Adventure',
+    'Comedy',
+    'Drama',
+    'Ecchi',
+    'Fantasy',
+    'Horror',
+    'Mahou Shoujo',
+    'Mecha',
+    'Music',
+    'Mystery',
+    'Psychological',
+    'Romance',
+    'Sci-Fi',
+    'Slice of Life',
+    'Sports',
+    'Supernatural',
+    'Thriller'];
   pick: string;
 
   constructor(private modalController: ModalController, private pickerController: PickerController,
@@ -44,7 +61,7 @@ export class FilterAnimeModalComponent implements OnInit {
         }
       ],
       columns:[{
-        name:'Season',
+        name:'Genre',
         options:this.getColumnOptions()
       }]
     };
@@ -55,21 +72,21 @@ export class FilterAnimeModalComponent implements OnInit {
 
   getColumnOptions(){
     const options = [];
-    this.season.forEach(x => {
+    this.genre.forEach(x => {
       options.push({text:x,value:x});
     });
     return options;
   }
 
   validate(): void {
-    if(this.pick != null && this.season != null) {
+    if(this.pick != null && this.genre != null) {
       this.modalController.dismiss({
         dismissed: true,
-        season: this.pick,
-        seasonYear: this.rangeValue
+        genre: this.pick,
+        year: this.rangeValue
       });
     } else {
-      this.presentToast('Select a date and a season please !');
+      this.presentToast('Select a date and a genre please !');
     }
   }
 
