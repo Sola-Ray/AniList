@@ -13,7 +13,7 @@ export class FilterAnimeModalComponent implements OnInit {
   @Input() date: Date;
   rangeValue;
 
-  season: string[] = ['SPRING', 'FALL', 'SUMMER', 'WINTER'];
+  season: string[] = ['WINTER', 'SPRING', 'SUMMER', 'FALL'];
   pick: string;
 
   constructor(private modalController: ModalController, private pickerController: PickerController,
@@ -69,7 +69,7 @@ export class FilterAnimeModalComponent implements OnInit {
         seasonYear: this.rangeValue
       });
     } else {
-      this.presentToast();
+      this.presentToast('Select a date and a season please !');
     }
   }
 
@@ -80,9 +80,9 @@ export class FilterAnimeModalComponent implements OnInit {
     });
   }
 
-  async presentToast() {
+  async presentToast(text: string) {
     const toast = await this.toastController.create({
-      message: 'Select a date and a season please !',
+      message: text,
       duration: 2000
     });
     toast.present();

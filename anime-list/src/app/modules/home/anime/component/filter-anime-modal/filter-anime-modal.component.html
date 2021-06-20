@@ -14,9 +14,9 @@
 
   <ion-item>
     <ng-container *ngIf="date">
-      <ion-range id="yearRange" min="1900" max="{{ date.getFullYear() }}" color="dark" [value]="rangeValue" pin="true"
+      <ion-range id="yearRange" min="1940" max="{{ date.getFullYear() }}" color="dark" [value]="rangeValue" pin="true"
                  [(ngModel)]="rangeValue">
-        <ion-label slot="start">1900</ion-label>
+        <ion-label slot="start">1940</ion-label>
         <ion-label slot="end">{{date.getFullYear()}}</ion-label>
       </ion-range>
     </ng-container>
