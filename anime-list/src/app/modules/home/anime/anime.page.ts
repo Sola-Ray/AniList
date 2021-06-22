@@ -5,6 +5,7 @@ import {Anime} from '../../../model/Anime';
 import {AnimeService} from '../../../service/anime.service';
 import {Router} from '@angular/router';
 import {DatabaseService} from '../../../service/database.service';
+import {Toast} from '@capacitor/toast';
 
 @Component({
   selector: 'app-anime',
@@ -128,10 +129,10 @@ export class AnimePage implements OnInit {
   }
 
   async presentToast(text: string) {
-    const toast = await this.toastController.create({
-      message: text,
-      duration: 2000
+    await Toast.show({
+      text,
+      duration: 'long',
+      position: 'bottom'
     });
-    toast.present();
   }
 }

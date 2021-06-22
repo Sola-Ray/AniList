@@ -5,6 +5,7 @@ import {IonInfiniteScroll, ModalController, ToastController, ViewDidEnter, ViewW
 import {Router} from '@angular/router';
 import {DatabaseService} from '../../../service/database.service';
 import {FilterMangaModalComponent} from './component/filter-manga-modal/filter-manga-modal.component';
+import {Toast} from '@capacitor/toast';
 
 @Component({
   selector: 'app-manga',
@@ -110,11 +111,11 @@ export class MangaPage implements OnInit, ViewDidEnter {
   }
 
   async presentToast(text: string) {
-    const toast = await this.toastController.create({
-      message: text,
-      duration: 2000
+    await Toast.show({
+      text,
+      duration: 'long',
+      position: 'bottom'
     });
-    toast.present();
   }
 
   async presentModal() {
