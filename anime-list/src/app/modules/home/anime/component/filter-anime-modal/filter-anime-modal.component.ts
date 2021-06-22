@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ModalController, ToastController} from '@ionic/angular';
+import {ModalController} from '@ionic/angular';
 import { PickerController } from '@ionic/angular';
 import { PickerOptions } from '@ionic/core';
+import { Toast } from '@capacitor/toast';
 
 @Component({
   selector: 'app-filter-anime-modal',
@@ -16,8 +17,7 @@ export class FilterAnimeModalComponent implements OnInit {
   season: string[] = ['WINTER', 'SPRING', 'SUMMER', 'FALL'];
   pick: string;
 
-  constructor(private modalController: ModalController, private pickerController: PickerController,
-              private toastController: ToastController) {
+  constructor(private modalController: ModalController, private pickerController: PickerController) {
   }
 
   ngOnInit() {
@@ -81,10 +81,10 @@ export class FilterAnimeModalComponent implements OnInit {
   }
 
   async presentToast(text: string) {
-    const toast = await this.toastController.create({
-      message: text,
-      duration: 2000
+    await Toast.show({
+      text,
+      duration: 'long',
+      position: 'bottom'
     });
-    toast.present();
   }
 }

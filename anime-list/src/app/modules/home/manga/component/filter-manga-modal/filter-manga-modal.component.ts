@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ModalController, ToastController} from '@ionic/angular';
 import { PickerController } from '@ionic/angular';
 import { PickerOptions } from '@ionic/core';
+import {Toast} from '@capacitor/toast';
 
 @Component({
   selector: 'app-filter-anime-modal',
@@ -98,10 +99,10 @@ export class FilterMangaModalComponent implements OnInit {
   }
 
   async presentToast(text: string) {
-    const toast = await this.toastController.create({
-      message: text,
-      duration: 2000
+    await Toast.show({
+      text,
+      duration: 'long',
+      position: 'bottom'
     });
-    toast.present();
   }
 }
