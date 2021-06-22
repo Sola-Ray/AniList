@@ -38,6 +38,8 @@ export class AnimePage implements OnInit {
 
     if(this.season != null && this.seasonYear != null) {
       this.loadFilteredData(this.season, this.seasonYear);
+    } else if(this.seasonYear != null) {
+      this.loadDataByYear(this.seasonYear);
     } else {
       this.loadUnfilteredData();
     }
@@ -50,6 +52,8 @@ export class AnimePage implements OnInit {
 
     if(this.season != null && this.seasonYear != null) {
       this.loadFilteredData(this.season, this.seasonYear);
+    } else if(this.seasonYear != null) {
+      this.loadDataByYear(this.seasonYear);
     } else {
       this.loadUnfilteredData();
     }
@@ -102,17 +106,19 @@ export class AnimePage implements OnInit {
     await this.presentModal();
 
     const { data } = await this.modal.onWillDismiss();
-
     if(data.season != null && data.seasonYear != null) {
       this.season = data.season.Season.value;
       this.seasonYear = data.seasonYear;
-      this.animes = [];
-      this.page = 1;
+      this.resetPage();
       this.loadFilteredData(this.season, this.seasonYear);
       this.presentToast('You have selected ' + this.season + ' ' + this.seasonYear);
+    } else if(data.seasonYear != null) {
+      this.seasonYear = data.seasonYear;
+      this.resetPage();
+      this.loadDataByYear(this.seasonYear);
+      this.presentToast('You have selected ' + this.seasonYear);
     } else if(data.stop) {
-      this.animes = [];
-      this.page = 1;
+      this.resetPage();
       this.seasonYear = null;
       this.season = null;
       this.loadUnfilteredData();
@@ -120,6 +126,11 @@ export class AnimePage implements OnInit {
     if(this.isPassed) {
       this.isPassed = false;
     }
+  }
+
+  private resetPage() {
+    this.animes = [];
+    this.page = 1;
   }
 
   async presentToast(text: string) {
@@ -131,7 +142,6 @@ export class AnimePage implements OnInit {
   }
 
   loadDataByYear(seasonYear: number): void {
-    console.log('loadDataByYear');
     this.isPassed = true;
     this.animeService.getAnimesByYear(this.page,20, seasonYear).subscribe((res) => {
       this.requestDatas(res);
@@ -148,7 +158,11 @@ export class AnimePage implements OnInit {
       this.animes.push(res.data.Page.media[i]);
     }
     if(this.animes.length === 0 && this.seasonYear != null && !this.isPassed) {
+      if(this.page !== 1) {
+        this.page = 1;
+      }
       this.loadDataByYear(this.seasonYear);
+      this.presentToast('Pas de résultats pour ' + this.season + ' ' + this.seasonYear + '. Chargement des données pour ' + this.seasonYear);
     }
   }
 }

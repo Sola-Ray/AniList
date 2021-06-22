@@ -62,15 +62,15 @@ export class FilterAnimeModalComponent implements OnInit {
   }
 
   validate(): void {
-    if(this.pick != null && this.season != null) {
-      this.modalController.dismiss({
-        dismissed: true,
-        season: this.pick,
-        seasonYear: this.rangeValue
-      });
-    } else {
+    //if(this.pick != null && this.season != null) {
+    this.modalController.dismiss({
+      dismissed: true,
+      season: this.pick,
+      seasonYear: this.rangeValue
+    });
+    /*} else {
       this.presentToast('Select a date and a season please !');
-    }
+    }*/
   }
 
   stop(): void {
