@@ -5,6 +5,11 @@ import {HomePage} from './home.page';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/anime',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
     component: HomePage,
     children: [
       {
