@@ -114,6 +114,7 @@ export class AnimePage implements OnInit {
       this.presentToast('You have selected ' + this.season + ' ' + this.seasonYear);
     } else if(data.seasonYear != null) {
       this.seasonYear = data.seasonYear;
+      this.season = null;
       this.resetPage();
       this.loadDataByYear(this.seasonYear);
       this.presentToast('You have selected ' + this.seasonYear);
