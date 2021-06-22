@@ -162,7 +162,7 @@ export class AnimePage implements OnInit {
         this.page = 1;
       }
       this.loadDataByYear(this.seasonYear);
-      this.presentToast('Pas de résultats pour ' + this.season + ' ' + this.seasonYear + '. Chargement des données pour ' + this.seasonYear);
+      this.presentToast('No results for ' + this.season + ' ' + this.seasonYear + '. Load data for ' + this.seasonYear);
     }
   }
 }
