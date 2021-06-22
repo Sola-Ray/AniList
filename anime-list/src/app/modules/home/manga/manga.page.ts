@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MangaService} from '../../../service/manga.service';
 import {Manga} from '../../../model/Manga';
-import {IonInfiniteScroll, ModalController, ToastController} from '@ionic/angular';
+import {IonInfiniteScroll, ModalController, ToastController, ViewDidEnter, ViewWillLeave} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {DatabaseService} from '../../../service/database.service';
 import {FilterMangaModalComponent} from './component/filter-manga-modal/filter-manga-modal.component';
@@ -11,7 +11,7 @@ import {FilterMangaModalComponent} from './component/filter-manga-modal/filter-m
   templateUrl: './manga.page.html',
   styleUrls: ['./manga.page.scss'],
 })
-export class MangaPage implements OnInit {
+export class MangaPage implements OnInit, ViewDidEnter {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   favorites = [];
   mangas: Manga[] = [];
@@ -24,14 +24,14 @@ export class MangaPage implements OnInit {
               private router: Router,
               private database: DatabaseService,
               private toastController: ToastController,
-              private modalController: ModalController,) {}
+              private modalController: ModalController) {}
 
   async ngOnInit(): Promise<void> {
     await this.database.init();
     await this.database.openStore('favoriteManga');
 
     const values = await this.database.getAllValues();
-    for(let i = 0; i < values.length; i++) {
+    for (let i = 0; i < values.length; i++) {
       this.favorites.push(JSON.parse(values[i]));
     }
 
@@ -41,7 +41,6 @@ export class MangaPage implements OnInit {
       this.loadUnfilteredData();
     }
     this.page++;
-    console.log(this.mangas);
   }
 
   loadData(event) {
@@ -93,6 +92,23 @@ export class MangaPage implements OnInit {
     });
   }
 
+  async ionViewDidEnter(): Promise<void> {
+    await this.database.openStore('favoriteManga');
+    this.favorites = [];
+    const values = await this.database.getAllValues();
+    for (let i = 0; i < values.length; i++) {
+      this.favorites.push(JSON.parse(values[i]));
+    }
+    for (let i = 0; i < this.mangas.length; i++) {
+      this.mangas[i].isFavorite = false;
+      for (let j = 0; j < this.favorites.length; j++) {
+        if (this.favorites[j].id === this.mangas[i].id) {
+          this.mangas[i].isFavorite = true;
+        }
+      }
+    }
+  }
+
   async presentToast(text: string) {
     const toast = await this.toastController.create({
       message: text,
@@ -111,14 +127,14 @@ export class MangaPage implements OnInit {
     return await this.modal.present();
   }
 
-  private requestDatas(res: any) {
+  private async requestDatas(res: any) {
     for (let i = 0; i < res.data.Page.media.length; i++) {
+      this.mangas.push(res.data.Page.media[i]);
       for (let j = 0; j < this.favorites.length; j++) {
-        if (this.favorites[j].id === res.data.Page.media[i].id) {
-          res.data.Page.media[i].isFavorite = true;
+        if (this.favorites[j].id === this.mangas[i].id) {
+          this.mangas[i].isFavorite = true;
         }
       }
-      this.mangas.push(res.data.Page.media[i]);
     }
   }
 }

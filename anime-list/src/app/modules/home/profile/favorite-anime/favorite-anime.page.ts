@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {DatabaseService} from '../../../../service/database.service';
 import {Router} from '@angular/router';
-import {ViewDidEnter} from '@ionic/angular';
+import {ViewDidEnter, ViewWillLeave} from '@ionic/angular';
 
 @Component({
   selector: 'app-favorite-anime',
@@ -20,27 +20,20 @@ export class FavoriteAnimePage implements OnInit, AfterViewInit, ViewDidEnter {
     await this.database.openStore('favoriteAnime');
   }
 
-  async loadFavData() {
-    console.log("LOAD FAV DATA");
-    console.log(this.favorites);
-    this.favorites = [];
-    const res = await this.database.isStoreOpen('favoriteAnime')
-    if(!res) {
-      console.log("open store");
-      await this.database.openStore('favoriteAnime');
-    }
-    const values = await this.database.getAllValues();
-    for(let i = 0; i < values.length; i++) {
-      this.favorites.push(JSON.parse(values[i]));
-    }
-    console.log(this.favorites);
-  }
-
   ionViewDidEnter(): void {
     this.loadFavData();
   }
 
+  async loadFavData() {
+    this.favorites = [];
+    await this.database.openStore('favoriteAnime');
+    const values = await this.database.getAllValues();
+    for (let i = 0; i < values.length; i++) {
+      this.favorites.push(JSON.parse(values[i]));
+    }
+  }
   navigateToDetail(media: any): void {
     this.router.navigateByUrl(`/anime/${media.id}`);
   }
+
 }

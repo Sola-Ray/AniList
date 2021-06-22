@@ -208,14 +208,4 @@ export class DatabaseService {
       return Promise.reject(new Error('deleteTable: Store not opened'));
     }
   }
-
-  async isStoreOpen(_dbName?: string): Promise<boolean>{
-    const {tables} = await this.store.tables();
-    for(let i = 0 ; i < tables.length; i++) {
-      if(tables[i].database === _dbName) {
-        return tables[i].database.isOpen;
-      }
-    }
-    return false;
-  }
 }

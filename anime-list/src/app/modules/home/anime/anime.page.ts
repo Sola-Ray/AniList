@@ -28,7 +28,7 @@ export class AnimePage implements OnInit {
 
   async ngOnInit() {
     await this.database.init();
-    await this.database.openStore("favoriteAnime");
+    await this.database.openStore('favoriteAnime');
 
     let values = await this.database.getAllValues();
     for(let i = 0; i < values.length; i++) {
@@ -70,11 +70,27 @@ export class AnimePage implements OnInit {
       this.requestDatas(res);
     });
   }
+  async ionViewDidEnter(): Promise<void> {
+    await this.database.openStore('favoriteAnime');
+    this.favorites = [];
+    const values = await this.database.getAllValues();
+    for (let i = 0; i < values.length; i++) {
+      this.favorites.push(JSON.parse(values[i]));
+    }
+    for (let i = 0; i < this.animes.length; i++) {
+      this.animes[i].isFavorite = false;
+      for (let j = 0; j < this.favorites.length; j++) {
+        if (this.favorites[j].id === this.animes[i].id) {
+          this.animes[i].isFavorite = true;
+        }
+      }
+    }
+  }
 
   private requestDatas(res) {
     for (let i = 0; i < res.data.Page.media.length; i++) {
       for (let j = 0; j < this.favorites.length; j++) {
-        if (this.favorites[j].id == res.data.Page.media[i].id) {
+        if (this.favorites[j].id === res.data.Page.media[i].id) {
           res.data.Page.media[i].isFavorite = true;
         }
       }

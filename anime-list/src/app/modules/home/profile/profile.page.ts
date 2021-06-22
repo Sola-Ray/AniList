@@ -16,4 +16,5 @@ export class ProfilePage implements OnInit {
   public onTabChanged(tabChanged: any) {
     this.currentTab = tabChanged.tab;
   }
+
 }

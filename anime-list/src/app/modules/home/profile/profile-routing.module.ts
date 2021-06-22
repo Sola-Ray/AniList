@@ -9,11 +9,11 @@ const routes: Routes = [
     component: ProfilePage,
     children: [
       {
-        path: 'anime-favorite',
+        path: 'animes',
         loadChildren: () => import('./favorite-anime/favorite-anime.module').then( m => m.FavoriteAnimePageModule)
       },
       {
-        path: 'manga-favorite',
+        path: 'mangas',
         loadChildren: () => import('./favorite-manga/favorite-manga.module').then( m => m.FavoriteMangaPageModule)
       }
       ]
