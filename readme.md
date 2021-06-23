@@ -1,8 +1,8 @@
 # Anime list
 
-Le projet est une application permettant de gérer une liste d'animes / mangas en local, l'application se base sur l'api gratuite et ouverte à tous du site [Anilist](https://anilist.co/home).
+Le projet est une application permettant de gérer une liste d'animes / mangas favoris en local, l'application se base sur l'api gratuite et ouverte à tous du site [Anilist](https://anilist.co/home).
 
-L'application permet à l'utilisateur, de feuilleter les animes et mangas du site, de consulter leurs fiches, d'ajouter ceux qu'ils préfèrent à ses favoris, et enfin de les partager. De plus, des filtres sont disponibles pour trier les animes et les mangas sur leur saison de sortie (hiver, printemps, etc...) ou encore leur genre (action, aventure, etc ...), ainsi que leur année de sortie pour faciliter la recherche.
+L'application permet à l'utilisateur, de feuilleter les animes et mangas du site, de consulter leurs fiches, d'ajouter ceux qu'ils préfèrent à ses favoris, et enfin de les partager. De plus, des filtres sont disponibles pour trier les animes et les mangas sur leur saison de sortie (hiver, printemps, etc...) ou encore leur genre (action, aventure, etc ...), ainsi que leur année de sortie pour faciliter la recherche. De plus, comme nous n'avons pas de thème particulier sur l'application, l'application s'adapte au thème du téléphone, si votre téléphone est en thème sombre par défaut, l'application le sera aussi.
 
 
 ## Scroll "Infini"
